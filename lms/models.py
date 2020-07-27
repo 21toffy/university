@@ -5,6 +5,10 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.utils.text import slugify
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from cloudinary.models import CloudinaryField
 
 
        
@@ -17,7 +21,7 @@ class Course(models.Model):
     overview = models.TextField(max_length=400)
     created = models.DateTimeField(auto_now_add=True)
     student = models.ManyToManyField(User, related_name='courses_joined', blank=True)
-    course_image = models.FileField(blank=True, null=True)
+    course_image = CloudinaryField(null=True, blank=True)
     
     
     
@@ -41,10 +45,10 @@ class Module(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     slug = models.SlugField()
-    video_url = models.FileField(upload_to='videos', null=True)
-    thumbnail = models.ImageField(blank=True, null=True)
+    video_url = CloudinaryField(null=True, blank=True)
+    thumbnail = CloudinaryField(null=True, blank=True)
     position = models.IntegerField()
-    files = models.FileField(blank=True, null=True, default='default.jpg', upload_to = 'profile_pics')
+    files = CloudinaryField(null=True, blank=True)
 
 
 

@@ -2,6 +2,10 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from cloudinary.models import CloudinaryField
 
 
 
@@ -24,7 +28,7 @@ class Profile(models.Model):
     first_name = models.CharField( max_length = 100, null=True, blank=True)
     Last_name = models.CharField( max_length = 100, null=True, blank=True)
     bio = models.CharField(max_length=200, blank=True)
-    profile_pic = models.ImageField(default='default.jpg', upload_to = 'profile_pics', blank=True)
+    profile_pic = CloudinaryField(null=True, blank=True)
     matric = models.IntegerField(null=True,blank=True)
     is_teacher = models.BooleanField('teacher status', default=False)
     # USERNAME_FIELD = 'matric'

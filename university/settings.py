@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'lms',
     'django.contrib.sites',
 
-   
+   'cloudinary',
   
     'markdownify',
     'crispy_forms',
