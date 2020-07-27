@@ -1,0 +1,77 @@
+{% extends 'lms/base.html' %}
+
+{% block title %}course list{% endblock %}
+{% block albums_active %}active{% endblock %}
+style=" margin-top :10px; margin-bottom:10px ;"
+{% block body %}
+
+
+<section style=" background-color: #209cee; margin-top :10px; margin-bottom:10px ;">
+    <div>
+      <div class="container">
+        <h2 style=" padding-top :30px; margin-bottom:10px ; color: aliceblue;">
+          ECE Online
+        </h2>
+        <p class="subtitle is-5" style=" padding-top :20px; padding-bottom:20px ; text-align: center; color: aliceblue;">
+         The us of technology to enhance greatness
+          <br/>Be a part of our world class community tODAY!!
+        </p>
+        
+      </div>
+    </div>
+  </section>
+ 
+ 
+  <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+    Next&nbsp;&raquo;
+    </a>
+ 
+  {% if request.user.profile.is_teacher %}
+  <a href="{% url "lms:course_create" %}" class="btn btn-info">create new course</a><br>
+{% endif %}<br><br>
+
+
+
+
+
+<div class="row"> 
+    {% for course in object_list %}
+    <div class="col-lg-3 col-md-6 col-12">
+        <div class="course-item">
+          {% if course.course_image %}
+<div class="image-blog">
+  <img src="{{course.course_image.url}}"  alt="" class="img-fluid">
+</div>
+{% endif %}
+<div class="course-br">
+  <div class="course-title">
+    <h2><a href="#" title="">{{course.title}}</a></h2>
+  </div>
+  <div class="course-desc">
+    <p>{{course.overview}}</p>
+    course code : {{course.code}}
+  </div>
+  Lecturer Incharge :{{ course.owner |capfirst }}
+
+</div>
+<div class="course-meta-bot">
+    {% if request.user == course.owner %}<br>
+    <span> <a href="{% url "lms:course_delete" course.pk %}" class="btn text-danger">Delete</a></span>
+    <span> <a href="{% url "lms:course_edit" course.pk %}" class="btn text-dark">edit course</a></span>
+    {% endif %}
+</div>
+</div>
+    </div><!-- end col -->
+    {% empty %}
+    <div>No content</div>
+  {% endfor %}
+</div>
+
+
+<br>
+<br>
+ 
+
+{% endblock %}
+
+

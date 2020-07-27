@@ -1,0 +1,216 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'class19/css/bootstrap.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'class19/css/font-awesome.min.css' %}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css copy/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css copy/style.css' %}">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="{% static 'css copy/versions.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css copy/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css copy/custom.css' %}">
+
+	<script src="{% static 'js copy/modernizer.js' %}"></script>
+
+
+    <!-- <link rel="stylesheet" href="{% static 'finalyearproject/css/bootstrap.min.css'%}"/> -->
+  <link rel="stylesheet" type="text/css" href="{% static 'finalyearproject/style.css' %}">
+  <!DOCTYPE html><html><head>  <meta charset="utf-8" />  
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+</head>
+</head>
+<body class="host_version"> 
+    <!-- Start header -->
+	<header class="top-navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+
+                            <a class="navbar-brand logo" href="{% url 'lms:index' %}" >
+                                    ECE Online
+                                </a> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbars-host">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active"><a class="nav-link" href="{% url 'lms:index' %}" >Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'lms:course_list' %}" >All Courses</a>
+                            </li>
+
+                            {% if user.is_authenticated %}
+
+                            <li class="nav-item">
+                                <a class="nav-link"  href="{% url 'user:profile' %}" >dashboards<a >
+
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'user:logout'%}">  LOGOUT:{{request.user.username}}</a></li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'QA:daily_question' %}" >Q&A blog</a >
+                                </li>
+                           
+                            
+                            {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'user:login' %}" >LOGIN </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'user:signup' %}">Register</a ></li>
+
+                
+                            {% endif %}
+
+
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- End header -->
+
+       
+   
+        {% block body %}       
+        {% endblock %}
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-xs-12">
+                        <div class="widget clearfix">
+                            <div class="widget-title">
+                                <h3>About US</h3>
+                            </div>
+                            <p> This is the official academic plartform of the department of Electronc and computer Engineering lagos state universty this project is a joint colaboration between a Group of our world class student and world class member of staff. the aim of this project is to continue the learning among our students and ultimately improve learning despite  the outbreak of the crona virus. We hope that all our students find this tool extreamely useful</p>   
+                            <div class="footer-right">
+                                <ul class="footer-links-soi">
+                                    <li><a href="https://www.facebook.com/lasuinfo"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                                    <li><a href="https://www.twitter.com/lasuofficial"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.instagram.com/lasuofficial"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/school/lagos-state-university-ojo-campus"><i class="fa fa-linkedin"></i></a></li>
+                                </ul><!-- end links -->
+                            </div>						
+                        </div><!-- end clearfix -->
+                    </div><!-- end col -->
+    
+                    <div class="col-lg-4 col-md-4 col-xs-12">
+                        <div class="widget clearfix">
+                            <div class="widget-title">
+                                <h3>Information Link</h3>
+                            </div>
+                            <ul class="footer-links">
+                                <li><a href="{% url 'lms:index' %}" >Home</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">About</a></li>
+                            </ul><!-- end links -->
+                        </div><!-- end clearfix -->
+                    </div><!-- end col -->
+                    
+                    <div class="col-lg-4 col-md-4 col-xs-12">
+                        <div class="widget clearfix">
+                            <div class="widget-title">
+                                <h3>Contact Details</h3>
+                            </div>
+    
+                            <ul class="footer-links">
+                                <li><a href="mailto:#">mailsupport@lasu.edu.ng</a></li>
+                                <li><a href="https://www.eceonline.herokuapp.com">ece Online</a></li>
+                                <li>Lagos Badagry Expressway, P.M.B 0001, LASU Post Office</li>
+                                <li>+234 8024 392 582</li>
+                            </ul><!-- end links -->
+                        </div><!-- end clearfix -->
+                    </div><!-- end col -->
+                    
+                </div><!-- end row -->
+            </div><!-- end container -->
+            </footer>
+    
+
+
+
+	<script src="{% static 'js copy/all.js' %}"></script>
+	<script src="{% static 'js copy/custom.js' %}"></script>
+	<script src="{% static 'js copy/timeline.min.js' %}"></script>
+
+<script>
+    timeline(document.querySelectorAll('.timeline'), {
+        forceVerticalMode: 700,
+        mode: 'horizontal',
+        verticalStartPosition: 'left',
+        visibleItems: 4
+    });
+</script>  
+</body >
+</html >
+
+
+
+
+{% comment %}
+<nav class="navbar navbar-expand-lg sticky-top navbar-light " style="padding-top: auto;">
+        <div class="container-fluid">    
+            <!-- Header -->
+            <div class="navbar-header">
+                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="navbarsupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>  
+                <a class="navbar-brand logo" href="{% url 'lms:course_list' %}" >
+                    ECE Online
+                </a>        
+            </div>
+            <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0" >
+                    <li class="nav-item active" >
+                        <a class="nav-link"  href="{% url 'QA:daily_question' %}" >Q&A blog</a >
+                    </li >
+                    
+                    <li class="nav-item" >
+                        <a class="nav-link iden" href="#" >about</a >
+                    </li >
+                    <li>
+                        <a class="nav-link iden" href="{% url 'lms:course_list' %}" >All Courses</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    
+                    <li class="nav-item" >
+                        <a class="nav-link iden" href="{% url 'user:profile' %}" >dashboard<a >
+                    </li>
+                    
+                    <li class="nav-item">
+                <a class="nav-link" href="{% url 'user:logout'%}">  LOGOUT:{{request.user.username}}</a>
+                        </li>
+                    {% else %}
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user:login' %}" >LOGIN </a>
+                    </li>
+    
+                    <li class="nav-item" >
+                        <a class="nav-link iden" href="{% url 'user:signup' %}">Register</a >
+                    </li >
+                    
+                    {% endif %}
+                </ul >
+                </div >
+                
+            </div>
+        </nav> 
+        
+        <br><br>
+{% endcomment %}
